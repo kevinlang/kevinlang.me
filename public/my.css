@@ -1,0 +1,37 @@
+body {
+  margin-bottom: 4rem !important;
+}
+
+.date {
+  color: #aaa
+}
+
+header {
+  padding-top: .5rem;
+  padding-bottom: 1.5rem;
+  background-color: #F3F4F6;
+  border-bottom: 1px solid rgba(60, 60, 67, 0.12);
+}
+
+header div.container {
+  margin: 0 auto;
+  max-width: 48rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+header .site-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+main {
+  max-width: 768px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
