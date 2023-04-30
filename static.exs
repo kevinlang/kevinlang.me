@@ -4,7 +4,10 @@ defmodule Components do
   use Phoenix.Component
   import Phoenix.HTML
 
-  defp current_url(slug), do: "https://kevinlang.me/#{slug}"
+  defp current_url(slug), do: "https://kevinlang.me#{slug}"
+
+  defp title(nil), do: "Kevin Lang"
+  defp title(title), do: "#{title} | Kevin Lang"
 
   def layout(assigns) do
     ~H"""
@@ -15,20 +18,20 @@ defmodule Components do
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title><%= @title %> | Kevin Lang</title>
+        <title><%= title(@title) %></title>
         <meta name="author" content="Kevin Lang">
         <meta name="description" content={@description} />
 
         <meta property="og:site_name" content="Kevin Lang">
         <meta property="og:locale" content="en_US">
-        <meta property="og:title" content={@title}>
+        <meta property="og:title" content={title(@title)}>
         <meta property="og:url" content={current_url(@slug)}>
         <meta property="og:image" content="https://kevinlang.me/apple-touch-icon.png">
         <meta property="og:description" content={@description} />
         <meta property="og:type" content="article" />
         <meta property="article:published_time" content={@date} />
 
-        <meta name="twitter:title" content={@title} />
+        <meta name="twitter:title" content={title(@title)} />
         <meta name="twitter:description" content={@description} />
         <meta name="twitter:url" content={current_url(@slug)} />
         <meta name="twitter:image" content="https://kevinlang.me/apple-touch-icon.png" />
@@ -48,15 +51,10 @@ defmodule Components do
         <script>hljs.highlightAll();</script>
       </head>
     </html>
-    <body class="markdown-body">
+    <body>
       <header>
         <div class="container">
-          <div class="site-title">Kevin Lang</div>
-          <nav>
-            <a href="/">home</a> /
-            <a href="/blog/">blog</a> /
-            <a href="/til/">til</a>
-          </nav>
+          <a class="site-title" href="/">Kevin Lang</a>
         </div>
       </header>
       <main>
@@ -66,9 +64,14 @@ defmodule Components do
     """
   end
 
-  def home(assigns) do
+  def index(assigns) do
     ~H"""
-    <h1>hello <%= @name %> </h1>
+    <h1>Blog posts</h1>
+    <%= for post <- @posts do %>
+    <p>
+      <b><a href={post.slug}><%= post.title %></a></b> <small>- <%= Calendar.strftime(post.date, "%B %d, %Y") %></small>
+    </p>
+    <%end%>
     """
   end
 
@@ -79,7 +82,7 @@ defmodule Components do
         <h1><%= @title %></h1>
         <p class="date"><small><%= Calendar.strftime(@date, "%B %d, %Y") %></small></p>
       </div>
-      <div>
+      <div class="markdown-body">
         <%= raw @body %>
       </div>
     </article>
@@ -113,12 +116,23 @@ posts =
     body = Earmark.as_html!(markdown)
     {attrs, _bindings} = Code.eval_string(attrs_code)
 
-    Map.merge(attrs, %{date: date, slug: "#{slug}/", body: body})
+    Map.merge(attrs, %{date: date, slug: "/#{slug}/", body: body})
   end)
 
 ### Generate HTML
 
 File.cp_r("public", "_site")
+
+html =
+  Helpers.render(&Components.index/1, %{
+    posts: posts,
+    title: nil,
+    description: "Kevin Lang's technical blog",
+    slug: "/",
+    date: Enum.map(posts, & &1.date) |> Enum.sort(:desc) |> List.first()
+  })
+
+File.write!("_site/index.html", html)
 
 Enum.each(posts, fn post ->
   html = Helpers.render(&Components.post/1, post)
