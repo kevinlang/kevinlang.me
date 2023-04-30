@@ -38,7 +38,7 @@ $ mix phx.server
 
 You should then be able to see the app running at `http://localhost:4000`.
 
-![Phoenix app homepage](phoenix-bulma-1.png)
+![Phoenix app homepage](/img/phoenix-bulma-1.png)
 
 ## Installing DartSass
 
@@ -114,7 +114,7 @@ $phoenix-orange: #f05423;
 
 With that done, you should see the home page of your app update with our "new sassy style".
 
-![Phoenix app after Sass](phoenix-bulma-2.png)
+![Phoenix app after Sass](/img/phoenix-bulma-2.png)
 
 ## Installing Bulma
 
@@ -154,7 +154,7 @@ Lastly, you will need to import Bulma into your root style sheet, `assets/css/ap
 
 If you start your server again, you will see the home page change slightly due to the Bulma styles mixing in with the default styles included in the initial generated Phoenix application.
 
-![Homepage after adding Bulma](phoenix-bulma-3.png)
+![Homepage after adding Bulma](/img/phoenix-bulma-3.png)
 
 ## Using Bulma and CSS Cleanup
 
@@ -221,6 +221,6 @@ Lastly, let's make a nice big Bulma hero section on our main `index.html` page
 
 With that done, we can load up our Phoenix server and see our new home page.
 
-![Phoenix homepage with Bulma](phoenix-bulma-4.png)
+![Phoenix homepage with Bulma](/img/phoenix-bulma-4.png)
 
 That's it! All the code in this tutorial is published at the [phoenix-bulma](https://github.com/kevinlang/phoenix-bulma) repository for you to reference. If you encounter any difficulties, feel free to open an issue there. Cheers!
