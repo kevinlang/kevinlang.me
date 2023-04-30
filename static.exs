@@ -86,6 +86,7 @@ end
 
 defmodule Helpers do
   def render(component, assigns) do
+    # could also just call component and send result to Phoenix.HTML.Safe.to_iodata() directly
     inner_content = Phoenix.Template.render(Components, component, "html", assigns)
     layout_assigns = Map.put(assigns, :inner_content, inner_content)
     Phoenix.Template.render_to_iodata(Components, "layout", "html", layout_assigns)
