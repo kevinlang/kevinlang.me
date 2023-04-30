@@ -66,19 +66,21 @@ defmodule Components do
 
   def index(assigns) do
     ~H"""
-    <h1>Blog posts</h1>
-    <%= for post <- @posts do %>
-    <p>
-      <b><a href={post.slug}><%= post.title %></a></b> <small>- <%= Calendar.strftime(post.date, "%B %d, %Y") %></small>
-    </p>
-    <%end%>
+    <h1 class="title">Blog posts</h1>
+    <div class="markdown-body">
+      <%= for post <- @posts do %>
+      <p>
+        <b><a href={post.slug}><%= post.title %></a></b> <small>- <%= Calendar.strftime(post.date, "%B %d, %Y") %></small>
+      </p>
+      <%end%>
+    </div>
     """
   end
 
   def post(assigns) do
     ~H"""
     <article>
-      <div>
+      <div class="title">
         <h1><%= @title %></h1>
         <p class="date"><small><%= Calendar.strftime(@date, "%B %d, %Y") %></small></p>
       </div>
