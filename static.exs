@@ -105,6 +105,7 @@ end
 
 posts =
   Path.wildcard("posts/*.md")
+  |> Enum.sort(:desc)
   |> Enum.map(fn path ->
     [year, month, day, slug] =
       path
