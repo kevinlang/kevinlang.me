@@ -5,7 +5,7 @@
 }
 ---
 
-[Phoenix LiveView]() has been out for a while now, though still not yet 1.0.
+[Phoenix LiveView](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html) has been out for a while now, though still not yet 1.0.
 Within the Phoenix community, it has been pushed enthusiastically, with many in the community claiming it should be used all cases over normal views as it only offers a "net positive".
 There are claims that there is no downside from either the user's or developer's perspective.
 
