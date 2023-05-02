@@ -1,6 +1,7 @@
 %{
   title: "Phoenix LiveView Navigation Regressions",
-  description: "Phoenix LiveView has multiple regressions in simple navigation scenarios.",
+  description: "Phoenix LiveView has notable regressions in simple navigation scenarios.",
+  hacker_news: "https://news.ycombinator.com/item?id=35785131"
 }
 ---
 
