@@ -121,6 +121,7 @@ posts =
 
     Map.merge(attrs, %{date: date, slug: "/#{slug}/", body: body})
   end)
+  |> Enum.filter(&(!&1[:draft]))
 
 ### Generate HTML
 
